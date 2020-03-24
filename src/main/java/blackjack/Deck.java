@@ -50,7 +50,7 @@ public class Deck
     private void createSuit(String suitName)
     {
         // Number cards
-        for (int i = 1; i <= 10; i++) cards.add(new Card(Integer.toString(i) + suitName,i));
+        for (int i = 2; i <= 10; i++) cards.add(new Card(Integer.toString(i) + suitName,i));
 
         // Picture cards
         cards.add(new Card("J" + suitName, 10));

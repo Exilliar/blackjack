@@ -42,5 +42,6 @@ public class Hand
     }
 
     public int getTotalValue() { return totalValue; }
+    public ArrayList<Card> getCards() { return cards; }
     public Card getCard(int index) { return cards.get(index); }
 }

@@ -1,5 +1,6 @@
 package blackjack;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public final class CLI 
@@ -25,5 +26,16 @@ public final class CLI
         System.out.print(message);
 
         return s.nextLine();
+    }
+
+    public static void printHand(Hand hand)
+    {
+        ArrayList<Card> cards = hand.getCards();
+
+        cards.forEach(c -> {
+            System.out.println(c.getName());
+        });
+
+        System.out.println("Value: " + hand.getTotalValue());
     }
 }

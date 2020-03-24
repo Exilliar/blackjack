@@ -76,7 +76,6 @@ public class DeckTest
     {
         ArrayList<Card> d = new ArrayList<Card>(52);
         // Hearts
-        d.add(new Card("1H", 1));
         d.add(new Card("2H", 2));
         d.add(new Card("3H", 3));
         d.add(new Card("4H", 4));
@@ -93,7 +92,6 @@ public class DeckTest
         d.add(new Card("AH", 11));
 
         // Diamonds
-        d.add(new Card("1D", 1));
         d.add(new Card("2D", 2));
         d.add(new Card("3D", 3));
         d.add(new Card("4D", 4));
@@ -110,7 +108,6 @@ public class DeckTest
         d.add(new Card("AD", 11));
 
         // Clubs
-        d.add(new Card("1C", 1));
         d.add(new Card("2C", 2));
         d.add(new Card("3C", 3));
         d.add(new Card("4C", 4));
@@ -127,7 +124,6 @@ public class DeckTest
         d.add(new Card("AC", 11));
 
         // Spades
-        d.add(new Card("1S", 1));
         d.add(new Card("2S", 2));
         d.add(new Card("3S", 3));
         d.add(new Card("4S", 4));
