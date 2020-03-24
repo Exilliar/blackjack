@@ -3,6 +3,7 @@ package blackjack;
 import java.util.ArrayList;
 
 import blackjack.exceptions.BustException;
+import blackjack.exceptions.DeckEmptyException;
 
 public class Hand
 {
@@ -16,6 +17,19 @@ public class Hand
 
         totalValue = card0.getValue() + card1.getValue();
     }
+    public Hand(Deck deck)
+    {
+        try
+        {
+            Card card0 = deck.pickCard();
+            Card card1 = deck.pickCard();
+
+            cards.add(card0);
+            cards.add(card1);
+
+            totalValue = card0.getValue() + card1.getValue();
+        } catch (DeckEmptyException e) { System.out.println(""); }
+    }
 
     public void addCard(Card card)
     throws BustException
@@ -28,4 +42,5 @@ public class Hand
     }
 
     public int getTotalValue() { return totalValue; }
+    public Card getCard(int index) { return cards.get(index); }
 }
