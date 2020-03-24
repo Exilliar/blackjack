@@ -55,6 +55,7 @@ public class DeckTest
     }
 
     // Test that it throws the correct error when there are no cards left
+    // TODO make work
     @Test
     public void testErrorThrow()
     {

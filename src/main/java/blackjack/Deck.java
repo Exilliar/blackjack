@@ -42,10 +42,7 @@ public class Deck
 
             return randCard;
         }
-        else
-        {
-            throw new DeckEmptyException();
-        }
+        else throw new DeckEmptyException();
     }
 
     public ArrayList<Card> getCards() { return cards; }
