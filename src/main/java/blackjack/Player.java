@@ -1,6 +1,7 @@
 package blackjack;
 
 import blackjack.exceptions.BustException;
+import blackjack.exceptions.InsufficientMoneyException;
 
 public class Player
 {
@@ -8,6 +9,7 @@ public class Player
     private String name;
     private int id;
     private boolean bust = false;
+    private int money = 1000;
 
     public Player(Hand h, String n, int i)
     {
@@ -25,8 +27,16 @@ public class Player
         catch(BustException e) { bust = true; }
     }
 
+    public void bet(int amount)
+    throws InsufficientMoneyException
+    {
+        if (money >= amount) money -= amount;
+        else throw new InsufficientMoneyException();
+    }
+
     public Hand getHand() { return hand; }
     public String getName() { return name; }
     public int getId() { return id; }
     public boolean getBust() { return bust; }
+    public int getMoney() { return money; }
 }

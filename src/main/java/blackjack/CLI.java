@@ -2,6 +2,7 @@ package blackjack;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public final class CLI 
 {
@@ -37,5 +38,13 @@ public final class CLI
         });
 
         System.out.println("Value: " + hand.getTotalValue());
+    }
+
+    public static void wait(int seconds)
+    {
+        try
+        {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) { System.out.println("that's unexpected"); }
     }
 }

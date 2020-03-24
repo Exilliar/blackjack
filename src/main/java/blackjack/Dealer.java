@@ -1,5 +1,6 @@
 package blackjack;
 
+import blackjack.exceptions.BustException;
 import blackjack.exceptions.DeckEmptyException;
 
 public class Dealer
@@ -7,14 +8,25 @@ public class Dealer
     private Deck deck = new Deck();
     private Hand hand = new Hand(deck);
     private Player[] players;
+    private final int betMultiplier = 2;
 
     public Dealer()
     {
         getPlayers();
 
-        showSingleCard();
+        showSingleCard(0);
 
         for (Player player : players) playRound(player);
+
+        showHand();
+
+        boolean bust = dealerPlay();
+
+        if (bust == true)
+        {
+            System.out.println("Lets check who won");
+            for (Player player : players) checkPlayerWin(player);
+        }
     }
 
     public void getPlayers()
@@ -33,9 +45,65 @@ public class Dealer
         }
     }
 
-    public void showSingleCard()
+    public void checkPlayerWin(Player player)
     {
-        System.out.println("My first card is " + hand.getCard(0).getName());
+        System.out.println("Okay " + player.getName());
+
+        if (player.getBust() != true)
+        {
+            if (player.getHand().getTotalValue() > hand.getTotalValue())
+            {
+                System.out.println("You beat me!");
+            }
+            else if (player.getHand().getTotalValue() == hand.getTotalValue())
+            {
+                System.out.println("We drew!");
+            } 
+            else
+            {
+                System.out.println("I beat you");
+            }
+        }
+    }
+
+    public boolean dealerPlay()
+    {
+        while (hand.getTotalValue() <= 16)
+        {
+            CLI.wait(1);
+            System.out.println("Hit!");
+            try
+            {
+                Card newCard = deck.pickCard();
+
+                System.out.println("Card: " + newCard.getName());
+
+                hand.addCard(newCard);
+
+                System.out.println("New hand value: " + hand.getTotalValue());
+            } catch (BustException e)
+            {
+                System.out.println("I've gone bust with a hand value of: " + hand.getTotalValue());
+
+                return false;
+            } catch (DeckEmptyException e) { System.out.println("Deck empty"); }
+        }
+
+        System.out.println("That's enough");
+        System.out.println("My ending hand value: " + hand.getTotalValue());
+
+        return true;
+    }
+
+    public void showSingleCard(int index)
+    {
+        System.out.println("My first card is " + hand.getCard(index).getName());
+    }
+
+    public void showHand()
+    {
+        System.out.println("My hand is");
+        CLI.printHand(hand);
     }
 
     public void playRound(Player player)
