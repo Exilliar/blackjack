@@ -6,21 +6,21 @@ Uses Maven
 
 ## Flow of the game
 
-Dealer asks how many players there are
+1. Dealer asks how many players there are
 
-Dealer asks for each players name
+2. Dealer asks for each players name
 
-Dealer asks each player for their bets
+3. Dealer asks each player for their bets
 
-Dealer shows their own first card
+4. Dealer shows their own first card
 
-Each player sees their own card, chooses whether to hit or stick
+5. Each player sees their own card, chooses whether to hit or stick
 
-Dealer shows their own second card
+6. Dealer shows their own second card
 
-Dealer starts to hit/stick, must hit until 16, stick at 16 or above
+7. Dealer starts to hit/stick, must hit until 16, stick at 16 or above
 
-Redeal
+8. Redeal
 
 ## UML
 
