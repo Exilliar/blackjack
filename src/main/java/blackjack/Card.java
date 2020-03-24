@@ -2,8 +2,8 @@ package blackjack;
 
 public class Card
 {
-    String name;
-    int value;
+    private String name;
+    private int value;
 
     public Card(String n, int v)
     {

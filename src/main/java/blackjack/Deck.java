@@ -7,7 +7,7 @@ import blackjack.exceptions.DeckEmptyException;
 
 public class Deck
 {
-    ArrayList<Card> cards = new ArrayList<Card>(52);
+    private ArrayList<Card> cards = new ArrayList<Card>(52);
 
     public Deck()
     {
