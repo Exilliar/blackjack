@@ -89,7 +89,7 @@ public class DeckTest
         d.add(new Card("JH", 10));
         d.add(new Card("QH", 10));
         d.add(new Card("KH", 10));
-        d.add(new Card("AH", 11));
+        d.add(new Ace("H"));
 
         // Diamonds
         d.add(new Card("2D", 2));
@@ -105,7 +105,7 @@ public class DeckTest
         d.add(new Card("JD", 10));
         d.add(new Card("QD", 10));
         d.add(new Card("KD", 10));
-        d.add(new Card("AD", 11));
+        d.add(new Ace("D"));
 
         // Clubs
         d.add(new Card("2C", 2));
@@ -121,7 +121,7 @@ public class DeckTest
         d.add(new Card("JC", 10));
         d.add(new Card("QC", 10));
         d.add(new Card("KC", 10));
-        d.add(new Card("AC", 11));
+        d.add(new Ace("C"));
 
         // Spades
         d.add(new Card("2S", 2));
@@ -137,7 +137,7 @@ public class DeckTest
         d.add(new Card("JS", 10));
         d.add(new Card("QS", 10));
         d.add(new Card("KS", 10));
-        d.add(new Card("AS", 11));
+        d.add(new Ace("S"));
 
         return d;
     }

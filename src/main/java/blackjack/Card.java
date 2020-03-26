@@ -11,6 +11,8 @@ public class Card
         value = v;
     }
 
+    public void setValue(int v) { value = v; } // This will likely only be used for the ace child class
+
     public String getName() { return name; }
     public int getValue() { return value; }
 }

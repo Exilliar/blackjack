@@ -64,10 +64,20 @@ public class Dealer
                 }
             }
 
-            for (Player player : players) System.out.println(player.getName() + ", your money is now at: " + player.getMoney());
+            for (Player player : players) 
+            {
+                System.out.println(player.getName() + ", your money is now at: " + player.getMoney());
+
+                resetPlayer(player);
+            }
 
             choice = CLI.getString("Do you want to play again? Y N: ");
         }
+    }
+
+    public void resetPlayer(Player player)
+    {
+        
     }
 
     public void getBet(Player player)

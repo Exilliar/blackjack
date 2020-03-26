@@ -45,8 +45,6 @@ public class Deck
         else throw new DeckEmptyException();
     }
 
-    public ArrayList<Card> getCards() { return cards; }
-
     private void createSuit(String suitName)
     {
         // Number cards
@@ -56,6 +54,8 @@ public class Deck
         cards.add(new Card("J" + suitName, 10));
         cards.add(new Card("Q" + suitName, 10));
         cards.add(new Card("K" + suitName, 10));
-        cards.add(new Card("A" + suitName, 11)); // Will likely need to create new class with overrides to handle spaces
+        cards.add(new Ace(suitName));
     }
+
+    public ArrayList<Card> getCards() { return cards; }
 }

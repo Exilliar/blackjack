@@ -38,7 +38,19 @@ public class Hand
 
         totalValue += card.getValue();
 
-        if (totalValue > 21) throw new BustException();
+        if (totalValue > 21) 
+        {
+            // Check for aces and lower the value if needed, then recheck the totalvalue
+            for (Card c : cards)
+            {
+                if (c instanceof Ace)
+                {
+                    ((Ace)c).changeVal();
+                    totalValue -= 10;
+                }
+            }
+            if (totalValue > 21) throw new BustException();
+        }
     }
 
     public int getTotalValue() { return totalValue; }
