@@ -11,6 +11,8 @@ public class Player
     private boolean bust = false;
     private int money = 1000;
     private int bet;
+    private boolean bankrupt = false;
+    private boolean playRound = false;
 
     public Player(Hand h, String n, int i)
     {
@@ -46,10 +48,23 @@ public class Player
         bet = 0;
     }
 
+    public void lose()
+    {
+        bet = 0;
+
+        if (money == 0) bankrupt = true;
+    }
+
+    public void setBet(int b) { bet = b; }
+    public void setMoney(int m) { money = m; }
+    public void setPlayRound(boolean p) { playRound = p; }
+
     public Hand getHand() { return hand; }
     public String getName() { return name; }
     public int getId() { return id; }
     public boolean getBust() { return bust; }
     public int getMoney() { return money; }
     public int getBet() { return bet; }
+    public boolean getBankrupt() { return bankrupt; }
+    public boolean getPlayRound() { return playRound; }
 }
