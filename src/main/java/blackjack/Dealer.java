@@ -16,56 +16,67 @@ public class Dealer
     {
         getPlayers();
 
-        CLI.wait(1);
+        String choice = "";
 
-        for (Player player : players) getBet(player);
-
-        CLI.wait(1);
-
-        showSingleCard(0);
-
-        CLI.wait(1);
-
-        for (Player player : players) playRound(player);
-
-        CLI.wait(1);
-
-        showHand();
-
-        CLI.wait(1);
-
-        boolean bust = dealerPlay();
-
-        CLI.wait(1);
-
-        System.out.println("Lets check who won");
-
-        if (bust == true)
+        while (!choice.equals("n"))
         {
-            for (Player player : players) checkPlayerWin(player);
-        }
-        else
-        {
-            for (Player player : players)
+            CLI.wait(1);
+
+            for (Player player : players) getBet(player);
+
+            CLI.wait(1);
+
+            showSingleCard(0);
+
+            CLI.wait(1);
+
+            for (Player player : players) playRound(player);
+
+            CLI.wait(1);
+
+            showHand();
+
+            CLI.wait(1);
+
+            boolean bust = dealerPlay();
+
+            CLI.wait(1);
+
+            System.out.println("Lets check who won");
+
+            if (bust == true)
             {
-                if (player.getPlayRound() == true)
+                for (Player player : players) checkPlayerWin(player);
+            }
+            else
+            {
+                for (Player player : players)
                 {
-                    if (player.getBust() == false)
+                    if (player.getPlayRound() == true)
                     {
-                        System.out.println(player.getName() + " beat me!");
-                        player.win(betMultiplier);
-                        CLI.wait(1);
-                    } else player.setBet(0);
+                        if (player.getBust() == false)
+                        {
+                            System.out.println(player.getName() + " beat me!");
+                            player.win(betMultiplier);
+                            CLI.wait(1);
+                        } else player.setBet(0);
+                    }
                 }
             }
-        }
 
-        for (Player player : players) System.out.println(player.getName() + ", your money is now at: " + player.getMoney());
+            for (Player player : players) System.out.println(player.getName() + ", your money is now at: " + player.getMoney());
+
+            choice = CLI.getString("Do you want to play again? Y N: ");
+        }
     }
 
     public void getBet(Player player)
     {
-        if (player.getBankrupt() == true) return;
+        if (player.getBankrupt() == true) 
+        {
+            player.setPlayRound(false); 
+            return;
+        }
 
         System.out.println("\nOkay " + player.getName() + "\nThe minimum bet is " + minBet);
         System.out.println("You have £" + player.getMoney());
