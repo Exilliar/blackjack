@@ -14,9 +14,8 @@ public class Player
     private boolean bankrupt = false;
     private boolean playRound = false;
 
-    public Player(Hand h, String n, int i)
+    public Player(String n, int i)
     {
-        hand = h;
         name = n;
         id = i;
     }
@@ -58,6 +57,7 @@ public class Player
     public void setBet(int b) { bet = b; }
     public void setMoney(int m) { money = m; }
     public void setPlayRound(boolean p) { playRound = p; }
+    public void setHand(Hand h) { hand = h; }
 
     public Hand getHand() { return hand; }
     public String getName() { return name; }

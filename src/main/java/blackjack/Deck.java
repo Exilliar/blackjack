@@ -7,11 +7,38 @@ import blackjack.exceptions.DeckEmptyException;
 
 public class Deck
 {
+    private int startingDeckSize;
+    private int singleDeckSize = 52;
     private ArrayList<Card> cards = new ArrayList<Card>(52);
 
     public Deck()
     {
-        // Create deck
+        startingDeckSize = singleDeckSize;
+
+        createDeck();
+    }
+
+    public Deck(int numDecks)
+    {
+        startingDeckSize = singleDeckSize*numDecks;
+
+        cards = new ArrayList<Card>(startingDeckSize);
+
+        for (int i = 0; i < numDecks; i++)
+        {
+            createDeck();
+        }
+    }
+
+    public void resetDeck()
+    {
+        cards = new ArrayList<Card>(startingDeckSize);
+
+        createDeck();
+    }
+
+    private void createDeck()
+    {
         // Hearts
         createSuit("H");
 
@@ -58,4 +85,7 @@ public class Deck
     }
 
     public ArrayList<Card> getCards() { return cards; }
+    public int getSingleDeckSize() { return singleDeckSize; }
+    public int getStartingDeckSize() { return startingDeckSize; }
+    public int getDeckSize() { return cards.size(); }
 }

@@ -27,7 +27,7 @@ public class HandTest
 
     // TODO test exception
 
-    // TODO test bust when using an ace
+
     @Test 
     public void testAce()
     {
@@ -35,9 +35,6 @@ public class HandTest
             hand.addCard(new Ace("H"));
 
             assertEquals(12, hand.getTotalValue());
-        } catch(BustException e) { 
-            System.out.println("BustException");
-            assert(false);
-        }
+        } catch(BustException e) { assert(false); }
     }
 }

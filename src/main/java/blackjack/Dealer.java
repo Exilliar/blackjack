@@ -67,17 +67,17 @@ public class Dealer
             for (Player player : players) 
             {
                 System.out.println(player.getName() + ", your money is now at: " + player.getMoney());
+            }
 
-                resetPlayer(player);
+            // Reset the deck if it's over 50% of the cards have been used
+            if (deck.getDeckSize() < deck.getStartingDeckSize()/2)
+            {
+                System.out.println("\nReseting the deck");
+                deck.resetDeck();
             }
 
             choice = CLI.getString("Do you want to play again? Y N: ");
         }
-    }
-
-    public void resetPlayer(Player player)
-    {
-        
     }
 
     public void getBet(Player player)
@@ -143,9 +143,7 @@ public class Dealer
         {
             String name = CLI.getString("What is player " + (i+1) + "'s name: ");
 
-            Hand playerHand = new Hand(deck);
-
-            players[i] = new Player(playerHand, name, i);
+            players[i] = new Player(name, i);
         }
     }
 
@@ -226,6 +224,8 @@ public class Dealer
     public void playRound(Player player)
     {
         if (player.getPlayRound() == false) return;
+
+        player.setHand(new Hand(deck));
 
         System.out.println("Okay " + player.getName());
 
