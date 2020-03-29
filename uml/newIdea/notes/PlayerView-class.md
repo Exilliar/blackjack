@@ -95,7 +95,7 @@ PlayerView
 
     getID() : int
     getName() : String
-    getCardNames() : String
+    getCardNames() : String[]
     getCardValues() : int[]
     getTotalHandValue() : int
     getMoney() : int
