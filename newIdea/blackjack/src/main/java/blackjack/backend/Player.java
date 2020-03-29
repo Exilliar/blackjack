@@ -13,6 +13,7 @@ public class Player
     private int bet;
     private boolean bankrupt = false;
     private boolean playRound = false;
+    private boolean roundWin = false;
 
     public Player(String n, int i)
     {
@@ -21,18 +22,22 @@ public class Player
     }
 
     public void hit(Card card)
+    throws BustException
     {
         try
         {
             hand.addCard(card);
         }
-        catch(BustException e) { bust = true; }
+        catch(BustException e) {
+            bust = true;
+            throw new BustException();
+        }
     }
 
     public void bet(int amount)
     throws InsufficientMoneyException
     {
-        if (money >= amount) 
+        if (money >= amount)
         {
             money -= amount;
             bet = amount;
@@ -58,6 +63,7 @@ public class Player
     public void setMoney(int m) { money = m; }
     public void setPlayRound(boolean p) { playRound = p; }
     public void setHand(Hand h) { hand = h; }
+    public void setRoundWin(boolean r) { roundWin = r; }
 
     public Hand getHand() { return hand; }
     public String getName() { return name; }
@@ -67,4 +73,5 @@ public class Player
     public int getBet() { return bet; }
     public boolean getBankrupt() { return bankrupt; }
     public boolean getPlayRound() { return playRound; }
+    public boolean getRoundWin() { return roundWin; }
 }

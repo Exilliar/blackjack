@@ -3,6 +3,7 @@ package blackjack.backend;
 import java.util.ArrayList;
 
 import blackjack.exceptions.BelowMinBetException;
+import blackjack.exceptions.BustException;
 import blackjack.exceptions.DeckEmptyException;
 import blackjack.exceptions.InsufficientMoneyException;
 import blackjack.views.PlayerView;
@@ -12,6 +13,7 @@ public class Dealer {
     private Deck deck;
     private Hand hand;
     private int minBet = 50;
+    private boolean bust = false;
 
     public Dealer() {
         deck = new Deck();
@@ -57,7 +59,51 @@ public class Dealer {
 
     public void dealerPlay()
     {
-        
+        while (hand.getTotalValue() < 16)
+        {
+            try {
+                Card newCard = deck.pickCard();
+
+                hand.addCard(newCard);
+            } catch (DeckEmptyException e) {
+                handleDeckEmptyException();
+            } catch (BustException e) {
+                bust = true;
+            }
+        }
+    }
+
+    public void playerHit(int playerId)
+    throws BustException
+    {
+        Player player = players.get(playerId);
+
+        try {
+            Card newCard = deck.pickCard();
+
+            player.hit(newCard);
+        } catch (DeckEmptyException e) {
+            handleDeckEmptyException();
+        } catch (BustException e) {
+            throw new BustException();
+        }
+    }
+
+    public void findWinners()
+    {
+        if (bust == false) findWinnersBustFalse();
+        else findWinnersBustTrue();
+    }
+
+    // The next 2 methods are needed as there are 2 different sets of logic required to find who won
+    // depending on whether the dealer has gone bust
+    private void findWinnersBustFalse()
+    {
+
+    }
+    private void findWinnersBustTrue()
+    {
+
     }
 
     public String[] getHandNames()
@@ -78,8 +124,9 @@ public class Dealer {
 
         return values;
     }
+    public boolean getBust(){ return bust; }
 
-    private void handleDeckEmpty()
+    private void handleDeckEmptyException()
     {
         System.out.println("Deck emtpy");
     }
