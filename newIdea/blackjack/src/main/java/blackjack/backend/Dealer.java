@@ -37,6 +37,8 @@ public class Dealer {
         Player player = players.get(playerId);
 
         player.bet(bet);
+
+        player.setPlayRound(true);
     }
 
     public void deal()
@@ -49,7 +51,7 @@ public class Dealer {
         }
     }
 
-    public Card showFirstCard()
+    public Card getFirstCard()
     {
         Card firstCard = hand.getCard(0);
 

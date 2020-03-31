@@ -34,6 +34,12 @@ public class PlayerView
 
         return values;
     }
+    public String getLastCardName()
+    {
+        int handSize = player.getHand().getCards().size();
+
+        return player.getHand().getCard(handSize-1).getName();
+    }
     public int getTotalHandValue() { return player.getHand().getTotalValue(); }
     public int getMoney() { return player.getMoney(); }
     public int getBet() { return player.getBet(); }
