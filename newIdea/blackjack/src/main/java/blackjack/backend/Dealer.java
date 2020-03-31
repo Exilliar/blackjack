@@ -17,6 +17,8 @@ public class Dealer {
 
     public Dealer() {
         deck = new Deck();
+
+        players = new ArrayList<Player>();
     }
 
     public PlayerView addPlayer(String name, int id) {
@@ -149,6 +151,7 @@ public class Dealer {
         return values;
     }
     public boolean getBust(){ return bust; }
+    public int getMinBet() { return minBet; }
 
     // TODO actually make this method
     private void handleDeckEmptyException()
