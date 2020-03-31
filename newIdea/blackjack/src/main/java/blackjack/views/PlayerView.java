@@ -39,4 +39,6 @@ public class PlayerView
     public int getBet() { return player.getBet(); }
     public boolean getPlayingRound() { return player.getPlayRound(); }
     public boolean getBust() { return player.getBust(); }
+    public boolean getRoundDraw() { return player.getRoundDraw(); }
+    public boolean getRoundWin() { return player.getRoundWin(); }
 }

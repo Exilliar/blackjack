@@ -38,7 +38,7 @@ public class Hand
 
         totalValue += card.getValue();
 
-        if (totalValue > 21) 
+        if (totalValue > 21)
         {
             // Check for aces and lower the value if needed, then recheck the totalvalue
             for (Card c : cards)

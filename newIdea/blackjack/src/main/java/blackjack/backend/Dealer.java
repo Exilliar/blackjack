@@ -95,15 +95,39 @@ public class Dealer {
         else findWinnersBustTrue();
     }
 
+    public void reset()
+    {
+        // Might need to update more parts about the player. But for now I think that this should
+        // be everything
+        for (Player player : players) { player.setHand(null); }
+    }
+
     // The next 2 methods are needed as there are 2 different sets of logic required to find who won
     // depending on whether the dealer has gone bust
     private void findWinnersBustFalse()
     {
-
+        for (Player player : players)
+        {
+            if (player.getBust() == true) player.setRoundWin(false);
+            else
+            {
+                int playerTotalValue = player.getHand().getTotalValue();
+                if (playerTotalValue > hand.getTotalValue()) player.setRoundWin(true);
+                else
+                {
+                    player.setRoundWin(false);
+                    if (playerTotalValue == hand.getTotalValue())player.setRoundDraw(false);
+                }
+            }
+        }
     }
     private void findWinnersBustTrue()
     {
-
+        for (Player player : players)
+        {
+            if (player.getBust() == true) player.setRoundWin(false);
+            else player.setRoundWin(true);
+        }
     }
 
     public String[] getHandNames()
@@ -126,6 +150,7 @@ public class Dealer {
     }
     public boolean getBust(){ return bust; }
 
+    // TODO actually make this method
     private void handleDeckEmptyException()
     {
         System.out.println("Deck emtpy");

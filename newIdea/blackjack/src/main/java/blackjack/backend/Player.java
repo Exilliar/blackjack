@@ -14,6 +14,7 @@ public class Player
     private boolean bankrupt = false;
     private boolean playRound = false;
     private boolean roundWin = false;
+    private boolean roundDraw = false;
 
     public Player(String n, int i)
     {
@@ -64,6 +65,7 @@ public class Player
     public void setPlayRound(boolean p) { playRound = p; }
     public void setHand(Hand h) { hand = h; }
     public void setRoundWin(boolean r) { roundWin = r; }
+    public void setRoundDraw(boolean r) { roundDraw = r; }
 
     public Hand getHand() { return hand; }
     public String getName() { return name; }
@@ -74,4 +76,5 @@ public class Player
     public boolean getBankrupt() { return bankrupt; }
     public boolean getPlayRound() { return playRound; }
     public boolean getRoundWin() { return roundWin; }
+    public boolean getRoundDraw() { return roundDraw; }
 }
