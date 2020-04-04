@@ -48,6 +48,8 @@ public class Player
 
     public void win(int multiplier)
     {
+        roundWin = true;
+
         money += bet*multiplier;
 
         bet = 0;

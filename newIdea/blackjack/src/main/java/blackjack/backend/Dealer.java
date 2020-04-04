@@ -14,6 +14,7 @@ public class Dealer {
     private Hand hand;
     private int minBet = 50;
     private boolean bust = false;
+    private int winMultiplier = 2;
 
     public Dealer() {
         deck = new Deck();
@@ -63,7 +64,7 @@ public class Dealer {
 
     public void dealerPlay()
     {
-        while (hand.getTotalValue() < 16)
+        while (hand.getTotalValue() < 16 && bust != true)
         {
             try {
                 Card newCard = deck.pickCard();
@@ -116,11 +117,11 @@ public class Dealer {
             else
             {
                 int playerTotalValue = player.getHand().getTotalValue();
-                if (playerTotalValue > hand.getTotalValue()) player.setRoundWin(true);
+                if (playerTotalValue > hand.getTotalValue()) player.win(winMultiplier);
                 else
                 {
                     player.setRoundWin(false);
-                    if (playerTotalValue == hand.getTotalValue())player.setRoundDraw(false);
+                    if (playerTotalValue == hand.getTotalValue())player.setRoundDraw(true);
                 }
             }
         }
@@ -130,7 +131,7 @@ public class Dealer {
         for (Player player : players)
         {
             if (player.getBust() == true) player.setRoundWin(false);
-            else player.setRoundWin(true);
+            else player.win(winMultiplier);
         }
     }
 

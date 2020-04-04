@@ -28,19 +28,48 @@ public final class CLI
 
         wait(1);
 
-        System.out.println("\nBetting time!\nThe minimum bet is " + dealer.getMinBet());
+        String choice = "y";
 
-        wait(1);
+        while (choice.equals("y"))
+        {
+            System.out.println("\nBetting time!\nThe minimum bet is " + dealer.getMinBet());
 
-        getBets();
+            wait(1);
 
-        wait(1);
+            getBets();
 
-        dealHands();
+            wait(1);
 
-        wait(1);
+            dealHands();
 
-        playRound();
+            wait(1);
+
+            playRound();
+
+            wait(1);
+            // TODO check if all players have gone bust, if they have then don't bother having the dealer play
+            dealerPlay();
+
+            wait(1);
+
+            showWinners();
+
+            dealer.reset();
+
+            boolean validChoice = false;
+
+            while (!validChoice)
+            {
+                choice = getString("Do you want to play another game (y,n)? ").toLowerCase();
+
+                if (choice.equals("y") || choice.equals("n"))
+                {
+                    if (choice.equals("n")) System.out.println("Goodbye");
+                    validChoice = true;
+                }
+                else System.out.println("Not a valid option");
+            }
+        }
     }
 
     public static ArrayList<PlayerView> getPlayers(int numPlayers)
@@ -152,6 +181,49 @@ public final class CLI
 
                 printHand(player);
             }
+
+            wait(1);
+        }
+    }
+
+    public static void dealerPlay()
+    {
+        System.out.println("\nDealers turn");
+
+        dealer.dealerPlay();
+
+        String[] cardNames = dealer.getHandNames();
+        int[] cardValues = dealer.getHandValues();
+        int currentTotal = cardValues[0] + cardValues[1];
+
+        System.out.println("Dealers starting hand: " + cardNames[0] + " " + cardNames[1]);
+        System.out.println("Giving it a value of: " + currentTotal);
+
+        for (int i = 2; i < cardNames.length; i++)
+        {
+            currentTotal += cardValues[i];
+
+            System.out.println("\nDealer draws a new card");
+
+            wait(1);
+
+            System.out.println("New card: " + cardNames[i]);
+            System.out.println("New total hand value: " + currentTotal);
+        }
+
+        if (dealer.getBust() == true) System.out.println("The dealer went bust");
+    }
+
+    public static void showWinners()
+    {
+        dealer.findWinners();
+
+        for (PlayerView player : playerViews)
+        {
+            if (player.getRoundWin() == true) System.out.println(player.getName() + ", you won!");
+            else System.out.println(player.getName() + ", you lost");
+
+            System.out.println("New total money: " + player.getMoney());
 
             wait(1);
         }
