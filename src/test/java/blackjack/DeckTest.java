@@ -5,20 +5,19 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import blackjack.exceptions.DeckEmptyException;
+import blackjack.backend.*;
 
 import static org.junit.Assert.*;
 
-public class DeckTest 
-{
+public class DeckTest {
     Deck deck = new Deck();
+
     @Test
-    public void testConstructor()
-    {
+    public void testConstructor() {
         ArrayList<Card> expectedDeck = addCards();
         ArrayList<Card> actualDeck = deck.getCards();
 
-        for (int i = 0; i < expectedDeck.size(); i++)
-        {
+        for (int i = 0; i < expectedDeck.size(); i++) {
             Card expectedCard = expectedDeck.get(i);
             Card actualCard = actualDeck.get(i);
 
@@ -29,51 +28,53 @@ public class DeckTest
 
     // Test size of cards is decreased by 1
     @Test
-    public void testPickCardDecrease()
-    {
+    public void testPickCardDecrease() {
         int startingSize = deck.getCards().size();
 
         try {
             deck.pickCard();
-        } catch(DeckEmptyException e){ assert(false); }
+        } catch (DeckEmptyException e) {
+            assert (false);
+        }
 
-        assertTrue("Deck size should have decreased by 1", deck.getCards().size() == startingSize-1);
+        assertTrue("Deck size should have decreased by 1", deck.getCards().size() == startingSize - 1);
     }
 
     // Test the card is actually removed
     @Test
-    public void testPickCardRemoved()
-    {
-        try 
-        {
+    public void testPickCardRemoved() {
+        try {
             Card pickedCard = deck.pickCard();
 
             deck.getCards().forEach(d -> {
                 assertNotEquals(d.getName(), pickedCard.getName()); // Only checking names as values will repeat
             });
-        } catch(DeckEmptyException e) { assert(false); }
+        } catch (DeckEmptyException e) {
+            assert (false);
+        }
     }
 
     // Test that it throws the correct error when there are no cards left
     // TODO make work
     @Test
-    public void testErrorThrow()
-    {
-        try
-        {
-            for (int i = 0; i < 52; i++) deck.pickCard();
-        } catch(DeckEmptyException e) { assert(false); }
+    public void testErrorThrow() {
+        try {
+            for (int i = 0; i < 52; i++)
+                deck.pickCard();
+        } catch (DeckEmptyException e) {
+            assert (false);
+        }
 
-        try
-        {
+        try {
             deck.pickCard();
-        } 
-        catch(DeckEmptyException e) { assert(true); }
-        catch(Exception e) { assert(false); }
+        } catch (DeckEmptyException e) {
+            assert (true);
+        } catch (Exception e) {
+            assert (false);
+        }
     }
 
-    private ArrayList<Card> addCards()
-    {
+    private ArrayList<Card> addCards() {
         ArrayList<Card> d = new ArrayList<Card>(52);
         // Hearts
         d.add(new Card("2H", 2));
